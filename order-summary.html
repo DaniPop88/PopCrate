@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pop Crate by Thomas | Order Summary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pop Crate by Thomas secure checkout for collectible toys and exclusive drops.">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #181829 0%, #23234a 110px, #23234a 100%);
+    }
+    .checkout-wrapper {
+      max-width: 660px;
+      margin: 60px auto 40px auto;
+      background: #23234a;
+      border-radius: 18px;
+      box-shadow: 0 8px 36px #fa2f5c33, 0 2px 12px #ffb64a33;
+      padding: 0 0 30px 0;
+      overflow: hidden;
+      border: 2.5px solid #ffb64a;
+    }
+    .header-bar {
+      background: linear-gradient(180deg, #23234a 0%, #181829 100%);
+      color: #ffb64a;
+      text-align: center;
+      padding: 28px 0 18px 0;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      box-shadow: 0 4px 22px #fa2f5c22;
+    }
+    .brand-logo {
+      width: 74px; height: 74px; border-radius: 16px; object-fit: cover;
+      background: #fff; box-shadow: 0 2px 14px #fa2f5c11;
+      margin-bottom: 12px; border: 3px solid #ffb64a;
+    }
+    .header-bar h1 {
+      margin: 0; font-size: 2.1em; font-weight: 900; letter-spacing: 0.04em;
+      color: #fff;
+      text-shadow: 2px 2px 0 #181829, 0 2px 14px #fa2f5c40;
+    }
+    .header-bar .subtitle {
+      color: #fff; font-size:1.12em; font-weight:400; margin-top:4px; letter-spacing:0.02em;
+      text-shadow: 0 2px 8px #fa2f5c18;
+    }
+    .stepper {
+      display: flex; justify-content: space-around; align-items: center;
+      margin: 32px 0 36px 0;
+    }
+    .step {
+      background: #181829;
+      color: #ffb64a;
+      border-radius: 50px;
+      font-weight: 700;
+      padding: 9px 28px;
+      font-size: 1.07em;
+      border: 2px solid #ffb64a;
+      margin: 0 8px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px #fa2f5c15;
+      transition: background 0.16s, color 0.16s;
+    }
+    .step.active {
+      background: #ffb64a; color: #23234a; border-color: #ffb64a;
+      text-shadow: none;
+    }
+    .order-section {
+      padding: 18px 34px 12px 34px;
+    }
+    .cards-list {
+      display: grid; gap: 18px;
+      grid-template-columns: 1fr;
+      margin-bottom: 15px;
+    }
+    .order-card {
+      background: #23234a;
+      border: 2px solid #fa2f5c;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px #fa2f5c15;
+    }
+    .order-card .item-title {
+      font-weight: 700; color: #ffb64a; font-size: 1.09em;
+    }
+    .order-card .item-qty {
+      color: #fff; font-weight: 600; font-size: 1em;
+    }
+    .order-card .item-price {
+      color: #fa2f5c; font-weight: 800; font-size: 1.1em;
+      margin-left: 18px;
+    }
+    .order-total {
+      font-size: 1.22em;
+      color: #fff;
+      background: linear-gradient(90deg, #fa2f5c 60%, #ffb64a 100%);
+      font-weight: 800;
+      border-radius: 8px;
+      text-align: right;
+      padding: 13px 22px;
+      margin-bottom: 8px;
+      border: 2px solid #ffb64a;
+      letter-spacing: 0.01em;
+      text-shadow: 1px 1px 8px #fa2f5c66;
+    }
+    form.checkout-form {
+      margin: 22px 0 0 0;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .input-group {
+      position: relative; margin-bottom: 22px;
+    }
+    .input-group input,
+    .input-group textarea {
+      width: 100%; border: none; border-bottom: 2px solid #fa2f5c99;
+      background: #181829;
+      padding: 10px 8px 7px 8px;
+      font-size: 1.09em; font-family: inherit;
+      color: #ffb64a;
+      border-radius: 7px 7px 0 0;
+      transition: border 0.2s, color 0.2s, background 0.22s;
+    }
+    .input-group input:focus,
+    .input-group textarea:focus {
+      outline: none; border-bottom: 2.5px solid #ffb64a; color: #fa2f5c; background: #23234a;
+    }
+    .input-group label {
+      position: absolute; left: 10px; top: 10px;
+      font-size: 0.98em; color: #ffb64a;
+      background: #23234a; padding: 0 3px;
+      pointer-events: none; transition: 0.18s;
+    }
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label,
+    .input-group textarea:focus + label,
+    .input-group textarea:not(:placeholder-shown) + label {
+      top: -18px; font-size: 0.88em; color: #fa2f5c;
+      background: #23234a;
+    }
+    .payment-methods-block {
+      margin: 22px 0 0 0; display: flex; flex-direction: column; gap: 11px;
+    }
+    .pay-radio-group {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .pay-radio-label {
+      background: #181829;
+      border: 2px solid #ffb64a;
+      border-radius: 10px; padding: 10px 20px;
+      display: flex; align-items: center; gap: 9px;
+      cursor: pointer; font-size: 1.07em; font-weight: 700;
+      color: #ffb64a;
+      transition: border 0.21s, background 0.21s, color 0.2s;
+      box-shadow: 0 2px 8px #fa2f5c10;
+    }
+    .pay-radio-label.selected {
+      background: #fa2f5c; color: #23234a; border: 2px solid #fa2f5c;
+    }
+    .pay-radio-label img {
+      width: 28px; height: 28px; object-fit: contain; border-radius: 7px;
+      background: #fff; border: 1px solid #ffb64a;
+    }
+    .pay-radio-label input[type="radio"] { display: none; }
+    .submit-btn {
+      margin-top: 25px; font-size: 1.19em; font-weight: 900;
+      background: linear-gradient(90deg, #fa2f5c 60%, #ffb64a 100%);
+      color: #23234a; border: none; border-radius: 8px;
+      padding: 15px 0; cursor: pointer; box-shadow: 0 2px 14px #fa2f5c22;
+      letter-spacing: 0.02em;
+      transition: background 0.18s, color 0.18s;
+    }
+    .submit-btn:hover { background: linear-gradient(90deg, #ffb64a 60%, #fa2f5c 100%); color: #fff;}
+    .required { color: #fa2f5c; }
+    .chat-success {
+      margin: 36px auto 0 auto;
+      max-width: 420px;
+      background: #23234a;
+      border-radius: 18px 18px 18px 6px;
+      border: 2.5px solid #fa2f5c;
+      color: #ffb64a;
+      box-shadow: 0 2px 12px #fa2f5c22;
+      font-size: 1.17em;
+      padding: 26px 22px;
+      text-align: left;
+      position: relative;
+      font-weight: 700;
+    }
+    .chat-success:before {
+      content: ""; display: block;
+      position: absolute; left: -16px; bottom: 18px;
+      width: 24px; height: 24px; background: #23234a;
+      border-bottom-right-radius: 18px;
+    }
+    .info-box {
+      padding: 22px 32px;
+      background: #181829;
+      border-radius: 14px; margin-top: 40px;
+      color: #ffb64a; font-size: 1.07em; font-weight: 600;
+      border: 2px solid #ffb64a;
+      box-shadow: 0 4px 18px #fa2f5c10;
+    }
+    .info-box h2 { color: #fa2f5c; font-size: 1.13em; margin-bottom: 8px;}
+    .info-box ul { margin: 10px 0 0 1.3em; padding:0;}
+    .info-box li { margin-bottom: 8px; }
+    .info-box a { color:#fa2f5c;text-decoration:underline; }
+    .back-link {
+      display: inline-block; margin: 24px 0 0 32px; color: #fff; font-weight: 700;
+      text-decoration: none; padding: 12px 24px; border-radius: 8px;
+      background: linear-gradient(90deg, #fa2f5c 70%, #ffb64a 100%);
+      border: 2px solid #ffb64a; transition: background 0.17s, color 0.18s;
+      box-shadow: 0 2px 10px #fa2f5c1a;
+    }
+    .back-link:hover { background: #ffb64a; color:#23234a; }
+    .empty { color: #ffb64a; text-align:center; margin: 32px 0; font-style:italic;}
+    @media (max-width:700px) {
+      .checkout-wrapper { max-width:98vw; margin: 36px auto 14px auto;}
+      .order-section, .info-box { padding: 11px 7vw; }
+    }
+    @media (max-width:500px) {
+      .stepper { flex-direction: column; gap: 5px; }
+      .order-section, .info-box { padding: 11px 4vw; }
+      .chat-success { padding: 16px 8px; }
+      .cards-list { gap: 10px; }
+      .header-bar h1 { font-size: 1.3em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-wrapper">
+    <div class="header-bar">
+      <img src="logo.png" alt="Pop Crate by Thomas Logo" class="brand-logo" loading="lazy">
+      <h1>Pop Crate by Thomas</h1>
+      <div class="subtitle">Secure Checkout</div>
+    </div>
+    <div class="stepper">
+      <div class="step active">Review</div>
+      <div class="step">Details</div>
+      <div class="step">Payment</div>
+      <div class="step">Confirmation</div>
+    </div>
+    <section class="order-section">
+      <div class="cards-list" id="orderCards"></div>
+      <div class="order-total" id="orderTotal"></div>
+      <form class="checkout-form" id="checkoutForm" autocomplete="off" method="POST" action="https://formspree.io/f/xgvzwjlg">
+        <div class="input-group">
+          <input type="email" id="emailField" name="email" maxlength="60" required placeholder=" " autocomplete="email">
+          <label for="emailField">Email Address <span class="required">*</span></label>
+        </div>
+        <div class="input-group">
+          <input type="text" id="nameField" name="name" maxlength="40" required placeholder=" ">
+          <label for="nameField">Full Name <span class="required">*</span></label>
+        </div>
+        <div class="input-group">
+          <input type="text" id="orgField" name="organization" maxlength="40" placeholder=" ">
+          <label for="orgField">Organization (Optional)</label>
+        </div>
+        <div class="input-group">
+          <textarea id="addrField" name="street" maxlength="120" required placeholder=" "></textarea>
+          <label for="addrField">Street Address <span class="required">*</span></label>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <div class="input-group" style="flex:1;">
+            <input type="text" id="suburbField" name="suburb" maxlength="30" required placeholder=" ">
+            <label for="suburbField">Suburb <span class="required">*</span></label>
+          </div>
+          <div class="input-group" style="flex:1;">
+            <input type="text" id="cityField" name="city" maxlength="30" required placeholder=" ">
+            <label for="cityField">City <span class="required">*</span></label>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <div class="input-group" style="flex:1;">
+            <input type="text" id="postalField" name="postal" maxlength="8" required pattern="^\d{4,6}$" placeholder=" ">
+            <label for="postalField">Postal Code <span class="required">*</span></label>
+          </div>
+          <div class="input-group" style="flex:1;">
+            <input type="text" id="provinceField" name="province" maxlength="30" required placeholder=" ">
+            <label for="provinceField">Province <span class="required">*</span></label>
+          </div>
+        </div>
+        <div class="input-group">
+          <input type="tel" id="phoneField" name="phone" maxlength="13" pattern="^\+639\d{9}$" placeholder=" " required>
+          <label for="phoneField">Mobile Number <span class="required">*</span></label>
+        </div>
+        <div class="payment-methods-block">
+          <div style="font-weight:700; margin-bottom:6px; color:#ffb64a;">Choose Payment Method <span class="required">*</span></div>
+          <div class="pay-radio-group" id="paymentRadios"></div>
+          <input type="hidden" name="payment" id="paymentHidden" required>
+        </div>
+        <input type="hidden" name="order_details" id="orderDetailsHidden">
+        <button type="submit" class="submit-btn">Confirm & Send Order</button>
+      </form>
+      <div class="chat-success" id="successChat" style="display:none;">
+        <span style="font-size:1.22em; font-weight:700;">🎉 Thank you!</span><br><br>
+        Your order is confirmed.<br>
+        You'll get a payment link and all next steps via SMS and email very soon.<br>
+        <span style="color:#fa2f5c; font-weight:700;">Stay tuned for our message!</span>
+      </div>
+    </section>
+    <aside class="info-box">
+      <h2>How Checkout Works</h2>
+      <ul>
+        <li><b>🕒 Business Hours:</b> Orders processed Monday–Friday, 10:00 AM – 6:00 PM. Orders placed outside these hours will be handled on the next business day.</li>
+        <li><b>📝 Order Confirmation:</b> We'll confirm your order details and shipping address before requesting payment.</li>
+        <li><b>💳 Payment Process:</b> A secure payment link or QR code (GCash, bank, etc.) will be sent. Please pay within 24 hours.</li>
+        <li><b>⚙️ Processing Time:</b> Orders ship in 1–3 business days after payment. We'll notify you if more time is needed.</li>
+        <li><b>🚚 Shipping & Delivery:</b> Once shipped, you'll get tracking info. Delivery timelines depend on your location and chosen courier.</li>
+        <li><b>📩 Support:</b> Need help? Email <a href="mailto:support@popcrate.ph">support@popcrate.ph</a></li>
+      </ul>
+      <div style="margin-top:12px;">
+        <b>Pop Crate by Thomas – Collect what you love. We handle the rest.</b>
+      </div>
+    </aside>
+    <a href="index.html" class="back-link">← Back to Shop</a>
+  </div>
+  <script>
+    // Payment options
+    const paymentChoices = [
+      { name: "GCASH", icon: "images/GCASH.png" },
+      { name: "PAYPAL", icon: "images/PAYPAL.png" },
+      { name: "PAYMAYA", icon: "images/PAYMAYA.png" },
+      { name: "BDO", icon: "images/BDO.png" },
+      { name: "BPI", icon: "images/BPI.png" },
+      { name: "CASH ON DELIVERY", icon: "" }
+    ];
+    const paymentRadiosDiv = document.getElementById('paymentRadios');
+    paymentChoices.forEach((choice, idx) => {
+      const label = document.createElement('label');
+      label.className = 'pay-radio-label';
+      label.setAttribute('tabindex', '0');
+      label.innerHTML = `<input type="radio" name="pmethod" value="${choice.name}" id="pay${idx}">
+        ${choice.icon ? `<img src="${choice.icon}" alt="${choice.name}">` : ""}
+        <span>${choice.name}</span>`;
+      label.addEventListener('click', function() {
+        document.querySelectorAll('.pay-radio-label').forEach(el => el.classList.remove('selected'));
+        label.classList.add('selected');
+        document.getElementById('paymentHidden').value = choice.name;
+        label.querySelector('input[type="radio"]').checked = true;
+      });
+      label.addEventListener('keydown', function(e) {
+        if (e.key === "Enter" || e.key === " ") label.click();
+      });
+      paymentRadiosDiv.appendChild(label);
+    });
+
+    // Order cards from localStorage
+    const cart = JSON.parse(localStorage.getItem('popcrate_cart') || "[]");
+    const orderCardsDiv = document.getElementById('orderCards');
+    const orderTotalDiv = document.getElementById('orderTotal');
+    let total = 0;
+    if (!cart.length) {
+      orderCardsDiv.innerHTML = "<div class='empty'>Your cart is empty.</div>";
+      orderTotalDiv.textContent = "";
+      document.getElementById('checkoutForm').style.display = "none";
+    } else {
+      let detailsText = "";
+      cart.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'order-card';
+        card.innerHTML = `
+          <div>
+            <span class="item-title">${item.name}</span>
+            <span class="item-qty">×${item.qty}</span>
+          </div>
+          <span class="item-price">₱${(item.price*item.qty).toLocaleString()}</span>
+        `;
+        orderCardsDiv.appendChild(card);
+        total += item.price * item.qty;
+        detailsText += `${item.name} x ${item.qty} - ₱${(item.price*item.qty).toLocaleString()}\n`;
+      });
+      orderTotalDiv.textContent = `Total: ₱${total.toLocaleString()}`;
+      document.getElementById('orderDetailsHidden').value = detailsText + `Total: ₱${total.toLocaleString()}`;
+    }
+
+    // Form validation and submit
+    document.getElementById('checkoutForm').onsubmit = function(e){
+      if (!document.getElementById('paymentHidden').value) {
+        alert("Please select your payment method.");
+        return false;
+      }
+      const name = document.getElementById('nameField').value.trim();
+      const street = document.getElementById('addrField').value.trim();
+      const suburb = document.getElementById('suburbField').value.trim();
+      const city = document.getElementById('cityField').value.trim();
+      const postal = document.getElementById('postalField').value.trim();
+      const province = document.getElementById('provinceField').value.trim();
+      const phone = document.getElementById('phoneField').value.trim();
+      if (!name || !street || !suburb || !city || !postal || !province || !phone) {
+        alert("Fill all required fields before submitting.");
+        return false;
+      }
+      if (!/^\+639\d{9}$/.test(phone)) {
+        alert("Use Philippine mobile format: +639XXXXXXXXX");
+        document.getElementById('phoneField').focus();
+        return false;
+      }
+      if (!/^\d{4,6}$/.test(postal)) {
+        alert("Postal code must be 4–6 digits.");
+        document.getElementById('postalField').focus();
+        return false;
+      }
+      setTimeout(function() {
+        document.getElementById('checkoutForm').style.display = "none";
+        document.getElementById('successChat').style.display = "";
+        localStorage.removeItem('popcrate_cart');
+        orderCardsDiv.innerHTML = "<div class='empty'>Your cart is empty.</div>";
+        orderTotalDiv.textContent = "";
+      }, 1200);
+    };
+  </script>
+</body>
+</html>
