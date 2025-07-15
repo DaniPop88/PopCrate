@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pop Crate by Thomas – Collectible Toys for Filipino Fans</title>
+  <meta name="description" content="Discover rare, authentic collectible toys, exclusive drops, and join the Filipino collector community. Shop Pop Crate by Thomas.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #181829;
+      --highlight: #fa2f5c;
+      --accent: #3254a8;
+      --crate: #ffb64a;
+      --text-main: #fff;
+      --text-sub: #e9e6f9;
+      --card-bg: #23234a;
+      --section-gap: 48px;
+      --radius: 22px;
+      --shadow: 0 8px 32px rgba(60,40,100,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--main-bg);
+      color: var(--text-main);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 40px 0 16px 0;
+      background: linear-gradient(180deg, #23234a 0, #181829 100%);
+      position: relative;
+    }
+    .brand-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 6px 36px #fa2f5b20;
+      border: 4px solid var(--highlight);
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .site-title {
+      font-size: 2.7em;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: var(--crate);
+      text-shadow: 2px 4px 0 #0002, 0 2px 16px #fa2f5c44;
+      margin-bottom: 10px;
+    }
+    .site-subtitle {
+      font-size: 1.3em;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .hero-banner {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 38px 18px 30px 18px;
+      background: linear-gradient(120deg, var(--card-bg) 65%, #3e215a 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .hero-banner h2 {
+      font-size: 2.1em;
+      margin: 0 0 10px 0;
+      font-weight: 800;
+      color: var(--highlight);
+      letter-spacing: 0.03em;
+    }
+    .hero-banner p {
+      font-size: 1.27em;
+      color: var(--text-main);
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+    .cta-btn {
+      background: linear-gradient(90deg, var(--highlight) 60%, var(--accent) 100%);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.18em;
+      border: none;
+      padding: 16px 38px;
+      border-radius: 100px;
+      cursor: pointer;
+      box-shadow: 0 2px 16px #fa2f5c44;
+      text-decoration: none;
+      transition: background .18s, color .18s;
+      letter-spacing: 0.04em;
+    }
+    .cta-btn:hover, .cta-btn:focus {
+      background: linear-gradient(90deg, var(--accent) 60%, var(--highlight) 100%);
+      color: #fff;
+      outline: 2.5px solid var(--crate);
+    }
+    section { margin-top: var(--section-gap); }
+
+    .why-section {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 0 18px;
+      text-align: center;
+    }
+    .why-title {
+      font-size: 2em;
+      color: var(--crate);
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+    .why-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+    }
+    .why-card {
+      flex: 1 1 200px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px 18px 18px 18px;
+      min-width: 220px;
+      max-width: 270px;
+      box-shadow: 0 2px 16px #fa2f5c16;
+      margin-bottom: 14px;
+      text-align: left;
+      position: relative;
+      border: 2px solid #ffb64a44;
+      transition: box-shadow .18s, border .2s;
+    }
+    .why-card:hover, .why-card:focus {
+      box-shadow: 0 8px 34px #fa2f5c36;
+      border: 2px solid var(--highlight);
+      z-index: 2;
+    }
+    .why-card h3 {
+      color: var(--highlight);
+      font-size: 1.21em;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+    }
+    .why-card p { color: var(--text-sub); margin: 0; font-size: 1.07em; }
+
+    .cat-section {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 18px;
+      text-align: center;
+    }
+    .cat-title {
+      color: var(--highlight);
+      font-size: 1.6em;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+    .cat-list {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cat-card {
+      flex: 1 1 230px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px 14px;
+      min-width: 230px;
+      max-width: 270px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 16px #3254a818;
+      border: 2px solid #3254a860;
+      transition: box-shadow .18s, border .2s;
+    }
+    .cat-card:hover, .cat-card:focus {
+      box-shadow: 0 8px 36px #3254a860;
+      border: 2px solid var(--accent);
+      z-index: 2;
+    }
+    .cat-card h4 { margin: 0 0 8px 0; color: var(--crate); font-size: 1.16em;}
+    .cat-card p { margin: 0; color: var(--text-sub); font-size: 1.04em;}
+
+    .about-section {
+      max-width: 880px;
+      margin: 0 auto;
+      background: linear-gradient(120deg, #22224b 65%, #3e215a 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 48px 24px 36px 24px;
+      margin-top: var(--section-gap);
+      color: #fff;
+      line-height: 1.6;
+    }
+    .about-title {
+      color: var(--highlight);
+      font-size: 1.45em;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .about-section strong { color: var(--crate);}
+    .about-section ul {
+      margin: 0 0 0 1.2em;
+      padding: 0;
+      color: var(--text-sub);
+      font-size: 1.08em;
+    }
+
+    .store-section {
+      background: #181829;
+      padding: 44px 0 44px 0;
+      text-align: center;
+    }
+    .store-title {
+      color: #ffb64a;
+      font-size: 2em;
+      font-weight: 900;
+      margin-bottom: 30px;
+      letter-spacing: 0.02em;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+    .product-card {
+      background: #23234a;
+      border-radius: 20px;
+      box-shadow: 0 2px 18px #fa2f5c16;
+      padding: 32px 22px 22px 22px;
+      min-width: 220px;
+      max-width: 260px;
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #23234a;
+      transition: box-shadow .16s, border .18s;
+    }
+    .product-card:focus, .product-card:hover {
+      border: 2px solid #ffb64a;
+      box-shadow: 0 8px 36px #ffb64a33;
+      z-index: 2;
+    }
+    .img-box {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #181829;
+      border-radius: 14px;
+      margin-bottom: 17px;
+      font-size: 2.5em;
+    }
+    .product-card h3 {
+      margin: 0 0 8px 0;
+      color: #fff;
+      font-size: 1.11em;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .price {
+      color: #fa2f5c;
+      font-weight: bold;
+      font-size: 1.15em;
+      margin-bottom: 14px;
+    }
+    .qty-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 7px;
+    }
+    .qty-row label {
+      color: #ffb64a;
+      font-weight: 700;
+      font-size: .98em;
+    }
+    .qty-row input[type="number"] {
+      width: 48px;
+      border-radius: 7px;
+      padding: 3px;
+      border: 1.5px solid #ffb64a;
+      background: #181829;
+      color: #fff;
+      text-align: center;
+      font-size: 1em;
+      font-family: inherit;
+      outline: none;
+    }
+    .add-btn {
+      background: #ffb64a;
+      color: #23234a;
+      font-weight: 700;
+      border: none;
+      border-radius: 100px;
+      padding: 12px 26px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: auto;
+      transition: background .14s, color .14s;
+    }
+    .add-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    /* CART BUTTON */
+    .cart-btn-fixed {
+      position: fixed;
+      bottom: 38px;
+      right: 38px;
+      background: #fa2f5c;
+      color: #fff;
+      border-radius: 50%;
+      width: 74px;
+      height: 74px;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 8px 32px rgba(250,47,92,0.22), 0 0 0 6px #ffb64a99;
+      cursor: pointer;
+      z-index: 101;
+      transition: box-shadow 0.2s, transform 0.15s;
+      border: 3px solid #ffb64a;
+    }
+    .cart-btn-fixed:hover, .cart-btn-fixed:focus {
+      box-shadow: 0px 12px 40px rgba(250,47,92,0.35), 0 0 0 8px #ffb64a;
+      transform: scale(1.07);
+    }
+    .cart-count {
+      position: absolute;
+      top: 9px;
+      right: 13px;
+      background: #ffb64a;
+      color: #23234a;
+      border-radius: 50%;
+      padding: 2px 10px;
+      font-size: .9em;
+      font-weight: 900;
+      min-width: 32px;
+      text-align: center;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px #fa2f5c15;
+    }
+
+    /* CART MODAL */
+    .cart-backdrop {
+      display: none;
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+    }
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #23234a, #181829 65%);
+      padding: 34px 18px 24px 18px;
+      border-radius: 22px;
+      box-shadow: 0 4px 24px rgba(250,47,92,0.18);
+      width: 98vw;
+      max-width: 430px;
+      z-index: 201;
+      border: 3px solid #ffb64a;
+      text-align: center;
+    }
+    .cart-modal h3 { margin: 0 0 18px 0; font-size: 1.27em; font-weight: bold; color: #fa2f5c;}
+    .cart-modal ul { list-style: none; padding: 0; margin: 0 0 10px 0; }
+    .cart-modal ul li { padding: 7px 0; display: flex; justify-content: space-between; align-items: center; font-size:1em;}
+    .remove-item-btn {
+      margin-left: 10px;
+      background: none;
+      border: none;
+      color: #fa2f5c;
+      font-size: 1.2em;
+      cursor: pointer;
+      font-weight: 900;
+    }
+    .empty-cart-msg { color: #888; font-style: italic; padding: 10px 0; }
+    .cart-modal .cart-count {
+      background-color: #ffb64a;
+      color: #23234a;
+      border-radius: 50%;
+      padding: 2px 9px;
+      font-size: .9em;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+    .cart-modal button {
+      background: #ffb64a;
+      color: #23234a;
+      font-weight: 700;
+      border: none;
+      border-radius: 100px;
+      padding: 12px 24px;
+      font-size: 1em;
+      margin: 8px 4px 0 4px;
+      cursor: pointer;
+      transition: background .14s, color .14s;
+    }
+    .cart-modal button:hover { background: #fa2f5c; color: #fff; }
+    /* CHECKOUT MODAL */
+    .checkout-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: #23234a;
+      padding: 36px 18px 28px 18px;
+      border-radius: 22px;
+      box-shadow: 0 8px 30px rgba(250,47,92,0.12);
+      z-index: 300;
+      max-width: 96vw;
+      min-width: 280px;
+      text-align: center;
+      border: 2.5px solid #fa2f5c;
+    }
+    .checkout-modal h2 {
+      color: #ffb64a; margin-bottom:12px; font-size:1.19em;
+    }
+    .checkout-modal label {
+      display: block; text-align:left; margin: 10px 0 2px 0; color:#ffb64a; font-weight:700;
+    }
+    .checkout-modal input[type="text"],
+    .checkout-modal input[type="email"] {
+      width: 95%; padding: 8px; border-radius: 8px; border:1.5px solid #fa2f5c;
+      background:#181829; color:#fff; font-family:inherit; font-size:1em;
+      margin-bottom:10px; outline:none;
+    }
+    .checkout-modal .order-summary {
+      margin:18px 0 14px 0; color:#fff; text-align:left; font-size:.98em;
+      background:#181829; border-radius:12px; padding:12px 18px;
+      border:1.5px solid #ffb64a80;
+    }
+    .checkout-modal .close-btn {
+      background: #fa2f5c; color:#fff; margin-top:14px; font-weight:900;
+    }
+    .checkout-modal .submit-btn {
+      background: #ffb64a; color: #23234a; font-weight:900; margin-top:12px;
+    }
+    .checkout-success {
+      color: #ffb64a; font-weight:900; margin-top:16px; font-size:1.11em;
+    }
+    /* FOOTER */
+    footer {
+      background: #121224;
+      color: var(--text-sub);
+      text-align: center;
+      padding: 38px 10px 22px 10px;
+      font-size: 1.03em;
+      margin-top: var(--section-gap);
+    }
+    .footer-socials {
+      margin: 10px 0 14px 0;
+    }
+    .footer-socials a {
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--highlight);
+      font-size: 1.45em;
+      text-decoration: none;
+      transition: color .14s;
+    }
+    .footer-socials a:hover { color: var(--crate);}
+    .footer-dti {
+      color: #ffb64a;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .footer-copy { color: #888; font-size: 0.97em; margin-top: 7px; }
+    @media (max-width: 900px) {
+      .why-list, .cat-list, .product-grid { flex-direction: column; gap: 14px; }
+      .why-card, .cat-card, .product-card { max-width: 98vw; }
+      .about-section { padding: 28px 8vw; }
+    }
+    @media (max-width: 520px) {
+      .hero-banner, .about-section, .store-section { padding: 18px 3vw 18px 3vw; }
+      .site-title { font-size: 1.45em; }
+      .brand-logo { width: 78px; height: 78px;}
+      .cart-btn-fixed { right: 10px; bottom: 10px; width:54px;height:54px;font-size:1.4em;}
+      .cart-count { top:6px;right:7px;font-size:.85em;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Pop Crate by Thomas Logo" class="brand-logo" loading="eager">
+    <div class="site-title">Pop Crate by Thomas</div>
+    <div class="site-subtitle">Selling Collectible Toys for Filipino Fans &amp; Serious Collectors</div>
+  </header>
+
+  <section class="hero-banner">
+    <h2>Discover Rare Finds &amp; Exclusive Drops</h2>
+    <p>
+      The best collectibles—curated, authentic, and ready for your collection. <br>
+      <strong>Level up your shelf. Join the Filipino collector community.</strong>
+    </p>
+    <a href="#store" class="cta-btn">Shop Now &rarr;</a>
+  </section>
+
+  <section class="why-section">
+    <div class="why-title">Why Pop Crate?</div>
+    <div class="why-list">
+      <div class="why-card" tabindex="0">
+        <h3>Curated Selection</h3>
+        <p>Hand-picked collectibles from around the globe—only the best for your shelf.</p>
+      </div>
+      <div class="why-card" tabindex="0">
+        <h3>Authenticity Guaranteed</h3>
+        <p>100% genuine items, sourced directly from licensed distributors or trusted secondary markets.</p>
+      </div>
+      <div class="why-card" tabindex="0">
+        <h3>Collector Community</h3>
+        <p>Join our Facebook Group for early alerts, trade-ins, and fan meetups.</p>
+      </div>
+      <div class="why-card" tabindex="0">
+        <h3>Nationwide Shipping</h3>
+        <p>Fast, trackable delivery anywhere in the Philippines.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat-section" id="products">
+    <div class="cat-title">Featured Categories</div>
+    <div class="cat-list">
+      <div class="cat-card" tabindex="0">
+        <h4>Limited-Edition Vinyl Figures</h4>
+        <p>High-quality vinyl with exclusive sculpt details.<br><strong>From ₱2,200</strong></p>
+      </div>
+      <div class="cat-card" tabindex="0">
+        <h4>Exclusive Action Figures</h4>
+        <p>Articulated figures from top franchises in limited runs.<br><strong>From ₱2,800</strong></p>
+      </div>
+      <div class="cat-card" tabindex="0">
+        <h4>Box Sets &amp; Dioramas</h4>
+        <p>Complete sets and display scenes for serious collectors.<br><strong>From ₱5,000</strong></p>
+      </div>
+      <div class="cat-card" tabindex="0">
+        <h4>Mystery Crates</h4>
+        <p>Surprise assortment of 3–5 items worth up to ₱10,000.<br><strong>From ₱4,000</strong></p>
+      </div>
+    </div>
+    <div style="margin-top:28px;">
+      <a href="#store" class="cta-btn" style="font-size:1em;">Browse All Products &rarr;</a>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="about-title">About Us</div>
+    <strong>Our Story</strong><br>
+    <p>
+      Pop Crate by Thomas started in 2021 when long-time collector Thomas Lee realized there was no single Philippine destination for rare pop-culture treasures. What began as sourcing exclusives at local conventions quickly grew into an online store loved by collectors nationwide.
+    </p>
+    <strong>Our Mission</strong><br>
+    <p>
+      To unite Filipino collectors with the most sought-after toys and build a vibrant community around our shared passion.
+    </p>
+    <strong>Our Values</strong>
+    <ul>
+      <li><strong>Authenticity:</strong> Every item is vetted for 100% legitimacy.</li>
+      <li><strong>Quality:</strong> We pack and ship with care so your collectibles arrive in mint condition.</li>
+      <li><strong>Community:</strong> More than a store—we’re a gathering place for fans to trade tips, trades, and stories.</li>
+    </ul>
+  </section>
+
+  <!-- Minimalist Shop Section at the Bottom -->
+  <section class="store-section" id="store">
+    <h2 class="store-title">Shop Collectibles</h2>
+    <div class="product-grid" id="productGrid">
+      <!-- Placeholder Products: swap with real data when ready -->
+    </div>
+  </section>
+
+  <!-- Floating Cart Button -->
+  <div class="cart-btn-fixed" id="cart-btn-fixed" aria-label="Show Cart" tabindex="0" onclick="showCart()">
+    🛒
+    <span class="cart-count" id="cart-count">0</span>
+  </div>
+  <!-- Cart Modal and Backdrop -->
+  <div class="cart-backdrop" id="cart-backdrop" tabindex="-1" aria-label="Cart Backdrop"></div>
+  <aside class="cart-modal" id="cart-modal" aria-label="Shopping Cart" tabindex="0">
+    <h3>Your Cart <span class="cart-count" id="cart-modal-count">0</span></h3>
+    <ul id="cart-items" aria-live="polite"></ul>
+    <div class="empty-cart-msg" id="empty-cart-msg" style="display:none;">Your cart is empty.</div>
+    <button onclick="checkout()" aria-label="Checkout">Checkout</button>
+    <button onclick="emptyCart()" aria-label="Empty Cart">Empty Cart</button>
+    <button onclick="closeCart()" aria-label="Close Cart">Close</button>
+  </aside>
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" id="checkout-modal" tabindex="-1">
+    <h2>Checkout</h2>
+    <form id="checkout-form" autocomplete="off" onsubmit="return submitOrder(event)">
+      <label for="customer-name">Full Name:</label>
+      <input type="text" id="customer-name" required maxlength="40" />
+      <label for="customer-email">Email:</label>
+      <input type="email" id="customer-email" required maxlength="60" />
+      <div class="order-summary" id="order-summary"></div>
+      <button class="submit-btn" type="submit">Place Order</button>
+      <button class="close-btn" type="button" onclick="closeCheckout()">Cancel</button>
+    </form>
+    <div class="checkout-success" id="checkout-success" style="display:none;">
+      🎉 Thank you! Your order has been placed.<br>
+      We'll contact you soon for payment and shipping.
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-socials">
+      <a href="https://facebook.com/popcrateph" target="_blank" aria-label="Facebook"><span>📘</span></a>
+      <a href="https://instagram.com/popcrateph" target="_blank" aria-label="Instagram"><span>📸</span></a>
+      <a href="https://tiktok.com/@popcrateph" target="_blank" aria-label="TikTok"><span>🎵</span></a>
+    </div>
+    <div>
+      <strong>Contact Us</strong><br>
+      Room 502, Collectors’ Hub, 88 P. Guevarra Street, San Juan, Metro Manila, 1500, Philippines<br>
+      <b>Phone:</b> +63 2 8738 5590 &nbsp;|&nbsp; <b>Email:</b>
+      <a href="mailto:support@popcrate.ph" style="color:#fa2f5c;">support@popcrate.ph</a>
+      <br>
+      <span class="footer-dti">DTI Permit #: 2023-789101</span>
+    </div>
+    <div class="footer-copy">
+      © 2025 Pop Crate by Thomas. All rights reserved.
+    </div>
+  </footer>
+  <script>
+    // Placeholder products - update with real info later!
+    const products = [
+      {
+        emoji: "🎁",
+        color: "#ffb64a",
+        name: "Mystery Crate",
+        price: 4000
+      },
+      {
+        emoji: "🤖",
+        color: "#3254a8",
+        name: "Limited-Edition Vinyl Figure",
+        price: 2200
+      },
+      {
+        emoji: "👾",
+        color: "#fa2f5c",
+        name: "Exclusive Action Figure",
+        price: 2800
+      },
+      {
+        emoji: "🎲",
+        color: "#ffb64a",
+        name: "Box Set & Diorama",
+        price: 5000
+      }
+      // ...more as needed
+    ];
+
+    // Render shop
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+      products.forEach((prod, idx) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.tabIndex = 0;
+        card.innerHTML = `
+          <div class="img-box" style="color:${prod.color};">${prod.emoji}</div>
+          <h3>${prod.name}</h3>
+          <div class="price">₱${prod.price.toLocaleString()}</div>
+          <div class="qty-row">
+            <label for="qty${idx}">Qty:</label>
+            <input type="number" id="qty${idx}" min="1" max="99" value="1" />
+          </div>
+          <button class="add-btn" onclick="addToCart(${idx})">Add to Cart</button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    renderProducts();
+
+    // Cart logic
+    let cart = [];
+    function addToCart(idx) {
+      const prod = products[idx];
+      const qty = parseInt(document.getElementById('qty'+idx).value, 10);
+      if (isNaN(qty) || qty < 1) return alert("Invalid quantity!");
+      let existing = cart.find(item => item.name === prod.name);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({ name: prod.name, price: prod.price, qty });
+      }
+      updateCart();
+      highlightCart();
+    }
+    function updateCart() {
+      let totalCount = 0;
+      cart.forEach(item => totalCount += item.qty);
+      document.getElementById('cart-count').textContent = totalCount;
+      document.getElementById('cart-modal-count').textContent = totalCount;
+
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      let total = 0;
+      if (cart.length === 0) {
+        document.getElementById('empty-cart-msg').style.display = '';
+      } else {
+        document.getElementById('empty-cart-msg').style.display = 'none';
+      }
+      cart.forEach((item, idx) => {
+        let li = document.createElement("li");
+        li.innerHTML = `<span>${item.name} × ${item.qty} - ₱${(item.price*item.qty).toLocaleString()}</span>
+          <button class="remove-item-btn" aria-label="Remove ${item.name} from cart" onclick="removeCartItem(${idx})" tabindex="0">&times;</button>`;
+        cartItems.appendChild(li);
+        total += item.price * item.qty;
+      });
+      if (cart.length > 0) {
+        let totalItem = document.createElement("li");
+        totalItem.innerHTML = `<strong>Total: ₱${total.toLocaleString()}</strong>`;
+        cartItems.appendChild(totalItem);
+      }
+      localStorage.setItem('popcrate_cart', JSON.stringify(cart));
+    }
+    function removeCartItem(idx) {
+      cart.splice(idx, 1);
+      updateCart();
+    }
+    function highlightCart() {
+      const cartDiv = document.getElementById('cart-btn-fixed');
+      cartDiv.style.boxShadow = "0px 12px 40px #fa2f5caa, 0 0 0 10px #ffb64a";
+      setTimeout(() => cartDiv.style.boxShadow = "", 500);
+    }
+    function showCart() {
+      document.getElementById("cart-modal").style.display = "block";
+      document.getElementById("cart-backdrop").style.display = "block";
+    }
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+      document.getElementById("cart-backdrop").style.display = "none";
+    }
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      closeCart();
+      document.getElementById('checkout-modal').style.display = 'block';
+      renderOrderSummary();
+    }
+    function emptyCart() {
+      if (!confirm("Are you sure you want to empty your cart?")) return;
+      cart = [];
+      updateCart();
+    }
+    function renderOrderSummary() {
+      const summary = document.getElementById('order-summary');
+      let html = '';
+      let total = 0;
+      cart.forEach(item => {
+        html += `${item.name} × ${item.qty} - ₱${(item.price*item.qty).toLocaleString()}<br>`;
+        total += item.price * item.qty;
+      });
+      html += `<strong>Total: ₱${total.toLocaleString()}</strong>`;
+      summary.innerHTML = html;
+      document.getElementById('checkout-success').style.display = 'none';
+      document.getElementById('checkout-form').style.display = '';
+    }
+    function closeCheckout() {
+      document.getElementById('checkout-modal').style.display = 'none';
+    }
+    function submitOrder(event) {
+      event.preventDefault();
+      // For demo: show success, clear cart
+      document.getElementById('checkout-form').style.display = 'none';
+      document.getElementById('checkout-success').style.display = '';
+      cart = [];
+      updateCart();
+      setTimeout(() => {
+        closeCheckout();
+      }, 2200);
+      return false;
+    }
+    // Persist cart
+    window.onload = function() {
+      const savedCart = localStorage.getItem('popcrate_cart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+      }
+      // Keyboard accessibility
+      document.getElementById("cart-btn-fixed").addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") showCart();
+      });
+      document.getElementById("cart-backdrop").onclick = closeCart;
+    }
+  </script>
+</body>
+</html>
