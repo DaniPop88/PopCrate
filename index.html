@@ -415,48 +415,17 @@
       transition: background .14s, color .14s;
     }
     .cart-modal button:hover { background: #fa2f5c; color: #fff; }
-    /* CHECKOUT MODAL */
-    .checkout-modal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      background: #23234a;
-      padding: 36px 18px 28px 18px;
-      border-radius: 22px;
-      box-shadow: 0 8px 30px rgba(250,47,92,0.12);
-      z-index: 300;
-      max-width: 96vw;
-      min-width: 280px;
-      text-align: center;
-      border: 2.5px solid #fa2f5c;
+    @media (max-width: 900px) {
+      .why-list, .cat-list, .product-grid { flex-direction: column; gap: 14px; }
+      .why-card, .cat-card, .product-card { max-width: 98vw; }
+      .about-section { padding: 28px 8vw; }
     }
-    .checkout-modal h2 {
-      color: #ffb64a; margin-bottom:12px; font-size:1.19em;
-    }
-    .checkout-modal label {
-      display: block; text-align:left; margin: 10px 0 2px 0; color:#ffb64a; font-weight:700;
-    }
-    .checkout-modal input[type="text"],
-    .checkout-modal input[type="email"] {
-      width: 95%; padding: 8px; border-radius: 8px; border:1.5px solid #fa2f5c;
-      background:#181829; color:#fff; font-family:inherit; font-size:1em;
-      margin-bottom:10px; outline:none;
-    }
-    .checkout-modal .order-summary {
-      margin:18px 0 14px 0; color:#fff; text-align:left; font-size:.98em;
-      background:#181829; border-radius:12px; padding:12px 18px;
-      border:1.5px solid #ffb64a80;
-    }
-    .checkout-modal .close-btn {
-      background: #fa2f5c; color:#fff; margin-top:14px; font-weight:900;
-    }
-    .checkout-modal .submit-btn {
-      background: #ffb64a; color: #23234a; font-weight:900; margin-top:12px;
-    }
-    .checkout-success {
-      color: #ffb64a; font-weight:900; margin-top:16px; font-size:1.11em;
+    @media (max-width: 520px) {
+      .hero-banner, .about-section, .store-section { padding: 18px 3vw 18px 3vw; }
+      .site-title { font-size: 1.45em; }
+      .brand-logo { width: 78px; height: 78px;}
+      .cart-btn-fixed { right: 10px; bottom: 10px; width:54px;height:54px;font-size:1.4em;}
+      .cart-count { top:6px;right:7px;font-size:.85em;}
     }
     /* FOOTER */
     footer {
@@ -485,18 +454,7 @@
       letter-spacing: 0.02em;
     }
     .footer-copy { color: #888; font-size: 0.97em; margin-top: 7px; }
-    @media (max-width: 900px) {
-      .why-list, .cat-list, .product-grid { flex-direction: column; gap: 14px; }
-      .why-card, .cat-card, .product-card { max-width: 98vw; }
-      .about-section { padding: 28px 8vw; }
-    }
-    @media (max-width: 520px) {
-      .hero-banner, .about-section, .store-section { padding: 18px 3vw 18px 3vw; }
-      .site-title { font-size: 1.45em; }
-      .brand-logo { width: 78px; height: 78px;}
-      .cart-btn-fixed { right: 10px; bottom: 10px; width:54px;height:54px;font-size:1.4em;}
-      .cart-count { top:6px;right:7px;font-size:.85em;}
-    }
+    .footer-copy a { color: #ffb64a; text-decoration: underline; margin: 0 6px; }
   </style>
 </head>
 <body>
@@ -603,23 +561,6 @@
     <button onclick="emptyCart()" aria-label="Empty Cart">Empty Cart</button>
     <button onclick="closeCart()" aria-label="Close Cart">Close</button>
   </aside>
-  <!-- Checkout Modal -->
-  <div class="checkout-modal" id="checkout-modal" tabindex="-1">
-    <h2>Checkout</h2>
-    <form id="checkout-form" autocomplete="off" onsubmit="return submitOrder(event)">
-      <label for="customer-name">Full Name:</label>
-      <input type="text" id="customer-name" required maxlength="40" />
-      <label for="customer-email">Email:</label>
-      <input type="email" id="customer-email" required maxlength="60" />
-      <div class="order-summary" id="order-summary"></div>
-      <button class="submit-btn" type="submit">Place Order</button>
-      <button class="close-btn" type="button" onclick="closeCheckout()">Cancel</button>
-    </form>
-    <div class="checkout-success" id="checkout-success" style="display:none;">
-      🎉 Thank you! Your order has been placed.<br>
-      We'll contact you soon for payment and shipping.
-    </div>
-  </div>
 
   <footer>
     <div class="footer-socials">
@@ -637,6 +578,10 @@
     </div>
     <div class="footer-copy">
       © 2025 Pop Crate by Thomas. All rights reserved.
+      <br>
+      <a href="privacy-policy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a> |
+      <a href="refund-policy.html">Refund & Return Policy</a>
     </div>
   </footer>
   <script>
@@ -758,41 +703,12 @@
         return;
       }
       closeCart();
-      document.getElementById('checkout-modal').style.display = 'block';
-      renderOrderSummary();
+      window.location.href = "order-summary.html";
     }
     function emptyCart() {
       if (!confirm("Are you sure you want to empty your cart?")) return;
       cart = [];
       updateCart();
-    }
-    function renderOrderSummary() {
-      const summary = document.getElementById('order-summary');
-      let html = '';
-      let total = 0;
-      cart.forEach(item => {
-        html += `${item.name} × ${item.qty} - ₱${(item.price*item.qty).toLocaleString()}<br>`;
-        total += item.price * item.qty;
-      });
-      html += `<strong>Total: ₱${total.toLocaleString()}</strong>`;
-      summary.innerHTML = html;
-      document.getElementById('checkout-success').style.display = 'none';
-      document.getElementById('checkout-form').style.display = '';
-    }
-    function closeCheckout() {
-      document.getElementById('checkout-modal').style.display = 'none';
-    }
-    function submitOrder(event) {
-      event.preventDefault();
-      // For demo: show success, clear cart
-      document.getElementById('checkout-form').style.display = 'none';
-      document.getElementById('checkout-success').style.display = '';
-      cart = [];
-      updateCart();
-      setTimeout(() => {
-        closeCheckout();
-      }, 2200);
-      return false;
     }
     // Persist cart
     window.onload = function() {
@@ -801,7 +717,6 @@
         cart = JSON.parse(savedCart);
         updateCart();
       }
-      // Keyboard accessibility
       document.getElementById("cart-btn-fixed").addEventListener("keydown", function(e){
         if (e.key === "Enter" || e.key === " ") showCart();
       });
